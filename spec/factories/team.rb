@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :team do
-    slug { FFaker::Lorem.world }
+    slug { FFaker::Lorem.word }
     user
   end
 end

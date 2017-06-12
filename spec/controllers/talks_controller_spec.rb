@@ -14,14 +14,15 @@ RSpec.describe TalksController, type: :controller do
   describe "GET #show" do
     render_views
 
-    let(:guest_user)
     let(:team) { create(:team) { |team| team.users << guest_user} }
+    let(:guest_user) { create(:user) }
 
-    context "when user is a talk member" do
+    context "when current user is a talk member" do
 
-      let(:message1) { create(:message) }
-      let(:message2) { create(:message) }
-      let(:talk) do
+      let(:message1) { build(:message) }
+      let(:message2) { build(:message) }
+
+      let!(:talk) do
         create(:talk, user_one: current_user, user_two: guest_user, team: team) do |talk|
           talk.messages << [message1, message2]
         end
@@ -48,7 +49,7 @@ RSpec.describe TalksController, type: :controller do
         expect(response_hash["messages"].count).to eql(2)
       end
 
-      it "returns the expected messages" do
+      it "returns the right messages" do
         response_hash = JSON.parse(response.body)
         expect(response_hash["messages"][0]["body"]).to eql(message1.body)
         expect(response_hash["messages"][0]["user_id"]).to eql(message1.user.id)
@@ -57,8 +58,8 @@ RSpec.describe TalksController, type: :controller do
       end
     end
 
-    context "when user isn't a talk member" do
-      let(:talk) { create(:talk, user_two: guest_user, team: team) }
+    context "when current user isn't a talk member" do
+      let!(:talk) { create(:talk, user_two: guest_user, team: team) }
 
       it "returns http forbidden" do
         get :show, params: {id: guest_user, team_id: team.id }

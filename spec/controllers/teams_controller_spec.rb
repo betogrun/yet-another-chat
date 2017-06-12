@@ -13,7 +13,7 @@ RSpec.describe TeamsController, type: :controller do
   describe "GET #index" do
     it "return sucess" do
       get :index
-      expect(resonse).to have_http_status(:sucess)
+      expect(response).to have_http_status(:success)
     end
   end
 
@@ -26,7 +26,7 @@ RSpec.describe TeamsController, type: :controller do
         it "return sucess" do
           get :show, params: { slug: team.slug }
 
-          expect(response).to have_http_status(:sucess)
+          expect(response).to have_http_status(:success)
         end
       end
 
@@ -36,7 +36,7 @@ RSpec.describe TeamsController, type: :controller do
           team.users << current_user
           get :show, params: { slug: team.slug }
 
-          expect(response).to have_http_status(:sucess)
+          expect(response).to have_http_status(:success)
         end
       end
 
@@ -88,7 +88,7 @@ RSpec.describe TeamsController, type: :controller do
       let(:team) { create(:team, user: current_user) }
       it "return sucess" do
         delete :destroy, params: {id: team.id }
-        expect(response).to have_http_status(:sucess)
+        expect(response).to have_http_status(:success)
       end
     end
 

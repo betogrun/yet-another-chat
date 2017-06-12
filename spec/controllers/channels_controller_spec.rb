@@ -61,8 +61,8 @@ RSpec.describe ChannelsController, type: :controller do
 
     context "when user is a team member" do
       let(:team) { create(:team, user: current_user) }
-      let(:message1) { create(:message) }
-      let(:message2) { create(:message) }
+      let(:message1) { build(:message) }
+      let(:message2) { build(:message) }
       let(:channel) do
          create(:channel, team: team) do |channel|
            channel.messages << [message1, message2]
@@ -74,7 +74,7 @@ RSpec.describe ChannelsController, type: :controller do
       end
 
       it "returns http sucess" do
-        expect(response).to have_http_status(:sucess)
+        expect(response).to have_http_status(:success)
       end
 
       it "returns the expected amount of messages" do
@@ -112,7 +112,7 @@ RSpec.describe ChannelsController, type: :controller do
 
         it "return http sucess" do
           delete :destroy, params: {id: channel.id }
-          expect(response).to have_http_status(:sucess)
+          expect(response).to have_http_status(:success)
         end
       end
 

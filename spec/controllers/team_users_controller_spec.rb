@@ -13,12 +13,25 @@ RSpec.describe TeamUsersController, type: :controller do
   end
 
   describe "GET #crete" do
+    render_views
+
     context "when user is the team owner" do
       let(:team) { create(:team, user: current_user) }
 
+      before(:each) do
+        post :create, params: { team_user: { email: guest_user.email, team_id: team.id } }
+      end
+
       it "returns http success" do
-        post :create, params: { team_user: { user_id: guest_user.id, team_id: team.id } }
         expect(response).to have_http_status(:success)
+      end
+
+      it "returns the expected params" do
+        response_hash = JSON.parse(response.body)
+
+        expect(response_hash["user"]["name"]).to eql(guest_user.name)
+        expect(response_hash["user"]["email"]).to eql(guest_user.email)
+        expect(response_hash["team_id"]).to eql(team.id)
       end
     end
 
@@ -26,7 +39,7 @@ RSpec.describe TeamUsersController, type: :controller do
       let(:team) { create(:team) }
 
       it "returns http forbidden" do
-        post :create, params: { team_user: { user_id: guest_user.id, team_id: team.id } }
+        post :create, params: { team_user: { email: guest_user.email, team_id: team.id } }
         expect(response).to have_http_status(:forbidden)
       end
     end
