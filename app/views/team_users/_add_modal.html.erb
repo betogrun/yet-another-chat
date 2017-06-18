@@ -1,0 +1,19 @@
+<div class="modal" id="add_user_modal">
+  <div class="modal-content">
+    <div class="row">
+      <%= form_tag submission_path, method: :get, class: "navbar-form navbar-left search-form" do %>
+        <div class="row">
+          <div class="col s12">
+            <h4>Add a new user</h4>
+          </div>
+          <div class="input-field col s12">
+            <%= hidden_field(:team_user, :team_id) %>
+            <%= text_field(:team_user, :email) %>
+            <%= label_tag(:email, "User email") %>
+            <%= submit_tag("Add user", class: "btn right") %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
