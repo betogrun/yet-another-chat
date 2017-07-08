@@ -3,7 +3,6 @@ class TeamsController < ApplicationController
   before_action :set_by_slug_team, only: [:show]
 
   def index
-    @teams = current_user.teams
   end
 
   def show

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   root to: 'teams#index'
   resource :teams, only: [:create, :destroy]
   get '/:slug', to: 'teams#show'
@@ -6,5 +7,4 @@ Rails.application.routes.draw do
   resources :talks, only: [:show]
   resources :team_users, only: [:create, :destroy]
   devise_for :users, :controllers => { registrations: 'registrations' }
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
