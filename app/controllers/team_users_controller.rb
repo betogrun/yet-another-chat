@@ -20,6 +20,7 @@ class TeamUsersController < ApplicationController
 
     respond_to do |format|
       format.json { render json: true }
+      format.html { redirect_to main_app.root_url }
     end
   end
 
