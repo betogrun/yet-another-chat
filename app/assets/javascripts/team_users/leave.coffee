@@ -11,7 +11,7 @@ $(document).on 'turbolinks:load', ->
         dataType: 'json',
         data: {team_id: $(".team_id").val()}
         success: (data, text, jqXHR) ->
-          $('.user_' + $('#user_remove_id').val()).remove()
+          $(location).attr('href','/')
           Materialize.toast('Success leaving the team &nbsp;<b>:)</b>', 4000, 'green')
         error: (jqXHR, textStatus, errorThrown) ->
           Materialize.toast('Problem leaving the team &nbsp;<b>:(</b>', 4000, 'red')
