@@ -2,7 +2,7 @@
 
 A simple slack clone using Rails, Action Cable and Jquery.
 
-![Screenshot](http://res.cloudinary.com/betogrun/image/upload/e_shadow:40/v1499537573/yas-app_thldhi.png)
+![Screenshot](http://res.cloudinary.com/betogrun/image/upload/e_shadow:40,q_100/v1499537573/yas-app_thldhi.png)
 
 ## Ruby version
 
