@@ -1,24 +1,22 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple slack clone using Rails, Action Cable and Jquery.
 
-Things you may want to cover:
+![Screenshot](http://res.cloudinary.com/betogrun/image/upload/e_shadow:40/v1499537573/yas-app_thldhi.png)
 
-* Ruby version
+## Ruby version
 
-* System dependencies
+Running on 2.3.3.
 
-* Configuration
+## Setup
 
-* Database creation
+# Run
+```
+docker-compose build
+docker-compose up
+```
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Run the test suite
+```
+docker-compose run --rm website rspec spec/
+```
